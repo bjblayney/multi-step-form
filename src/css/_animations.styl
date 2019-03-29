@@ -1,0 +1,44 @@
+/*
+  Possible Animations:
+  enter
+  exit
+  appear Must set transitionAppear={true} on animation component
+*/
+
+.order
+  position absolute
+.order-enter
+  transform: translateY(120%)
+  transition 2s
+  opacity: 0
+  &.order-enter-active
+    opacity: 1
+    transform: translateY(0)
+
+.order-exit
+  transition 2s
+  transform: translateY(0)
+  opacity: 1
+  &.order-exit-active
+    transform: translateY(-120%)
+    opacity: 0
+
+
+.count-enter
+  background: red
+  transition .5s
+  transform translateY(100%)
+  &.count-enter-active
+    background: yellow
+    transform translateY(0)
+
+.count-exit
+  background: black
+  transform translateY(0)
+  transition .5s
+  position absolute
+  left 0
+  bottom 0
+  &.count-exit-active
+    background green
+    transform translateY(-100%) scale(3)
