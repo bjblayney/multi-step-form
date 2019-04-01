@@ -93,6 +93,7 @@ class App extends React.Component {
           >
             <AboutMe
               nextStep={this.nextStep}
+              prevStep={this.prevStep}
               handleChange={this.handleChange}
               values={values}
             />

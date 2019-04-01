@@ -14,3 +14,10 @@ The user can then skip back and forth between steps using the `prevStep` and `ne
 The `handleChange` function updates the value of the details provided by the user inside state and it will be passed to the child components as props.
 
 # Questions
+
+
+
+## notes 
+https://css-tricks.com/the-magic-of-react-based-multi-step-forms/
+https://scotch.io/tutorials/creating-multistep-forms-with-react-and-semantic-ui
+https://materializecss.com/

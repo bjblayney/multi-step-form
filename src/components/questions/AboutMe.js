@@ -48,6 +48,12 @@ class AboutMe extends React.Component {
           <div className="row">
             <a
               className="waves-effect waves-light btn"
+              onClick={this.props.prevStep}
+            >
+              <i className="material-icons left">chevron_left</i>Go Back
+            </a>
+            <a
+              className="waves-effect waves-light btn"
               onClick={this.saveAndContinue}
             >
               <i className="material-icons right">chevron_right</i>Continue
