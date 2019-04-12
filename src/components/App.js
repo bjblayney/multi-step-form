@@ -1,8 +1,52 @@
 import React from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
+import withStyles from "@material-ui/core/styles/withStyles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Paper from "@material-ui/core/Paper";
+
 import ProfileType from "./questions/ProfileType";
 import AboutMe from "./questions/AboutMe";
+
+const styles = theme => ({
+  appBar: {
+    position: "relative"
+  },
+  layout: {
+    width: "auto",
+    marginLeft: theme.spacing.unit * 2,
+    marginRight: theme.spacing.unit * 2,
+    [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
+      width: 600,
+      marginLeft: "auto",
+      marginRight: "auto"
+    }
+  },
+  paper: {
+    marginTop: theme.spacing.unit * 3,
+    marginBottom: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 2,
+    [theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
+      marginTop: theme.spacing.unit * 6,
+      marginBottom: theme.spacing.unit * 6,
+      padding: theme.spacing.unit * 3
+    }
+  },
+  stepper: {
+    padding: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 5}px`
+  },
+  buttons: {
+    display: "flex",
+    justifyContent: "flex-end"
+  },
+  button: {
+    marginTop: theme.spacing.unit * 3,
+    marginLeft: theme.spacing.unit
+  }
+});
 
 class App extends React.Component {
   state = {
@@ -72,17 +116,11 @@ class App extends React.Component {
     switch (step) {
       case 1:
         return (
-          <CSSTransition
-            classNames="order"
-            key="1"
-            timeout={{ enter: 2000, exit: 2000 }}
-          >
-            <ProfileType
-              nextStep={this.nextStep}
-              handleChange={this.handleQuickChange}
-              values={values}
-            />
-          </CSSTransition>
+          <ProfileType
+            nextStep={this.nextStep}
+            handleChange={this.handleQuickChange}
+            values={values}
+          />
         );
       case 2:
         return (
@@ -140,37 +178,34 @@ class App extends React.Component {
       country
     };
 
-    return (
-      <div className="row">
-        <div className="col s12 m4 l3">
-          <h3>Data</h3>
-          <ul>
-            <li>profileType: {profileType}</li>
-            <li>firstName: {firstName}</li>
-            <li>lastName: {lastName}</li>
-            <li>email: {email}</li>
-          </ul>
-        </div>
+    const { classes } = this.props;
 
-        <div className="col s12 m8 l9">
-          <div className="row">
-            <h1>Current Step: {step}</h1>
-          </div>
-          <div className="row">
-            <form onSubmit={this.handleSubmit}>
-              <div className="row">
-                <div className="col s12 m6">
-                  <TransitionGroup component="div">
-                    {this.renderNextQuestion()}
-                  </TransitionGroup>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+    return (
+      <React.Fragment>
+        <CssBaseline />
+        <AppBar position="absolute" color="default" className={classes.appBar}>
+          <Toolbar>
+            <Typography variant="h6" color="inherit" noWrap>
+              Company name
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <main className={classes.layout}>
+          <TransitionGroup component="div">
+            <CSSTransition
+              classNames="order"
+              key="1"
+              timeout={{ enter: 2000, exit: 2000 }}
+            >
+              <Paper className={classes.paper}>
+                {this.renderNextQuestion()}
+              </Paper>
+            </CSSTransition>
+          </TransitionGroup>
+        </main>
+      </React.Fragment>
     );
   }
 }
 
-export default App;
+export default withStyles(styles)(App);
