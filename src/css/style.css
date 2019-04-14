@@ -23,6 +23,33 @@
           transform: translateY(-120%);
   opacity: 0;
 }
+.paper {
+  padding: 24px;
+  margin-top: 48px;
+  margin-bottom: 48px;
+}
+.paper-enter {
+  -webkit-transform: translateY(120%);
+          transform: translateY(120%);
+  transition: 2s;
+  opacity: 0;
+}
+.paper-enter.paper-enter-active {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+.paper-exit {
+  transition: 2s;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  opacity: 1;
+}
+.paper-exit.paper-exit-active {
+  -webkit-transform: translateY(-120%);
+          transform: translateY(-120%);
+  opacity: 0;
+}
 .count-enter {
   background: #f00;
   transition: 0.5s;

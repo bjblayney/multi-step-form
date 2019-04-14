@@ -51,7 +51,7 @@ const styles = theme => ({
 class App extends React.Component {
   state = {
     step: 1, // Default is Step 1
-    profileType: "",
+    profileType: "female",
     firstName: "",
     lastName: "",
     email: ""
@@ -72,6 +72,8 @@ class App extends React.Component {
   };
 
   handleQuickChange = input => event => {
+    console.log(input);
+    console.log(event.target.value);
     this.setState({ [input]: event.target.value });
     this.nextStep();
   };
@@ -116,11 +118,17 @@ class App extends React.Component {
     switch (step) {
       case 1:
         return (
-          <ProfileType
-            nextStep={this.nextStep}
-            handleChange={this.handleQuickChange}
-            values={values}
-          />
+          <CSSTransition
+            classNames="paper"
+            key="1"
+            timeout={{ enter: 2000, exit: 2000 }}
+          >
+            <ProfileType
+              nextStep={this.nextStep}
+              handleChange={this.handleQuickChange}
+              values={values}
+            />
+          </CSSTransition>
         );
       case 2:
         return (
@@ -192,15 +200,7 @@ class App extends React.Component {
         </AppBar>
         <main className={classes.layout}>
           <TransitionGroup component="div">
-            <CSSTransition
-              classNames="order"
-              key="1"
-              timeout={{ enter: 2000, exit: 2000 }}
-            >
-              <Paper className={classes.paper}>
-                {this.renderNextQuestion()}
-              </Paper>
-            </CSSTransition>
+            {this.renderNextQuestion()}
           </TransitionGroup>
         </main>
       </React.Fragment>

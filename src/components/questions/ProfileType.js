@@ -1,4 +1,5 @@
 import React from "react";
+
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -7,6 +8,8 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
+import Paper from "@material-ui/core/Paper";
+import classNames from "classnames";
 
 const styles = theme => ({
   root: {
@@ -17,22 +20,24 @@ const styles = theme => ({
   },
   group: {
     margin: `${theme.spacing.unit}px 0`
+  },
+  paper: {
+    marginTop: theme.spacing.unit * 3,
+    marginBottom: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 2,
+    [theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
+      marginTop: theme.spacing.unit * 6,
+      marginBottom: theme.spacing.unit * 6,
+      padding: theme.spacing.unit * 3
+    }
   }
 });
 
 class ProfileType extends React.Component {
-  state = {
-    value: "female"
-  };
-
-  handleChange = event => {
-    this.setState({ value: event.target.value });
-  };
-
   render() {
     const { classes } = this.props;
     return (
-      <React.Fragment>
+      <Paper className="paper">
         <Typography variant="h6" gutterBottom>
           Category/Type
         </Typography>
@@ -44,8 +49,9 @@ class ProfileType extends React.Component {
                 aria-label="Gender"
                 name="gender1"
                 className={classes.group}
-                value={this.state.value}
-                onChange={this.handleChange}
+                value={this.props.values.profileType}
+                // onChange={this.handleChange}
+                onChange={this.props.handleChange("profileType")}
               >
                 <FormControlLabel
                   value="female"
@@ -72,8 +78,7 @@ class ProfileType extends React.Component {
             </FormControl>
           </Grid>
         </Grid>
-      </React.Fragment>
-
+      </Paper>
       // <div className="card order">
       //   <div
       //     className="card-content white-text"
