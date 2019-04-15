@@ -24,9 +24,11 @@
   opacity: 0;
 }
 .paper {
+  position: absolute;
   padding: 24px;
   margin-top: 48px;
   margin-bottom: 48px;
+  width: 40%;
 }
 .paper-enter {
   -webkit-transform: translateY(120%);
