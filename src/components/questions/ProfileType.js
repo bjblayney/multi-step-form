@@ -9,7 +9,6 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import Paper from "@material-ui/core/Paper";
-import classNames from "classnames";
 
 const styles = theme => ({
   root: {

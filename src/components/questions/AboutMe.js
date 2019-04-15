@@ -21,7 +21,6 @@ class AboutMe extends React.Component {
   };
 
   render() {
-    const { values } = this.props;
     const { classes } = this.props;
 
     return (
