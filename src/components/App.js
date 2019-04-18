@@ -78,8 +78,58 @@ class App extends React.Component {
   };
 
   handleChange = input => event => {
+    console.log("handleChange:");
     this.setState({ [input]: event.target.value });
   };
+
+  handleSubmit = input => event => {
+    event.preventDefault();
+
+    console.log("component state", JSON.stringify(this.state));
+
+    if (!this.showFormErrors()) {
+      console.log("form is invalid: do not submit");
+    } else {
+      console.log("form is valid: submit");
+    }
+  };
+
+  showFormErrors() {
+    const inputs = document.querySelectorAll(".validate input");
+    let isFormValid = true;
+    console.log("all-inputs :", inputs);
+    inputs.forEach(input => {
+      input.classList.add("active");
+      console.log("input-name :", input.name);
+      const isInputValid = this.showInputError(input.name);
+
+      if (!isInputValid) {
+        isFormValid = false;
+      }
+    });
+
+    return isFormValid;
+  }
+
+  showInputError(refName) {
+    const validity = document.getElementById(refName).validity;
+    // const label = document.getElementById(`${refName}Label`).textContent;
+    // const error = document.getElementById(`${refName}Error`);
+
+    if (!validity.valid) {
+      if (validity.valueMissing) {
+        // error.textContent = `${label} is a required field`;
+        console.log("empty");
+      } else if (validity.typeMismatch) {
+        // error.textContent = `${label} should be a valid email address`;
+        console.log("typeMismatch");
+      }
+      return false;
+    }
+
+    // error.textContent = "";
+    return true;
+  }
 
   componentDidMount() {
     console.log("mounted");
@@ -139,7 +189,7 @@ class App extends React.Component {
             <AboutMe
               nextStep={this.nextStep}
               prevStep={this.prevStep}
-              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
               values={values}
             />
           </CSSTransition>

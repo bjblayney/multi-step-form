@@ -1,4 +1,5 @@
 import React from "react";
+import validator from "validator";
 
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -17,7 +18,7 @@ const styles = theme => ({
 class AboutMe extends React.Component {
   saveAndContinue = e => {
     e.preventDefault();
-    this.props.nextStep();
+    this.props.handleChange();
   };
 
   render() {
@@ -37,6 +38,7 @@ class AboutMe extends React.Component {
               label="First name"
               fullWidth
               autoComplete="fname"
+              className="validate"
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -47,6 +49,20 @@ class AboutMe extends React.Component {
               label="Last name"
               fullWidth
               autoComplete="lname"
+              className="validate"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              required
+              id="email"
+              name="email"
+              label="Email"
+              type="email"
+              ref="email"
+              fullWidth
+              autoComplete="email"
+              className="validate"
             />
           </Grid>
           <Grid item xs={12}>
@@ -127,7 +143,7 @@ class AboutMe extends React.Component {
             variant="contained"
             color="primary"
             className={classes.button}
-            onClick={this.saveAndContinue}
+            onClick={this.props.handleSubmit()}
           >
             Continue
           </Button>
